@@ -78,3 +78,4 @@ def main(product_name):
 if __name__ == '__main__':
     print(main('BTC_JPY'))
     # print(config.sections())
+
