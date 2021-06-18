@@ -1,0 +1,73 @@
+{% extends 'common/base.html' %}
+
+
+{% block main %}
+      <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                {% for i in object_list %}
+                    ['{{ i.created_time }}', {{ i.high_price }}, {{ i.high_price }}, {{ i.low_price }}, {{ i.close_price }}],
+                {% endfor %}
+              // Treat first row as data as well.
+            ], true);
+
+            var options = {
+              legend:'none'
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+      }
+
+          function send(){
+              $.get("applications/api/price", {"product_code": "BTC_JPY"} ).done(function (data){
+                  console.log(data)
+                  var bit_coin_info = JSON.parse(data)
+                  /*console.log(typeof bit_coin_info)
+                  $('#dashboard_dev1').append(bit_coin_info['truncate_second'] +' '+ bit_coin_info['price'] + '<br>')*/
+              })
+          }
+          {#setInterval(send, 1000 * 60)#}
+          window.onload = function (){
+              send()
+          }
+
+          function send2(){
+              $.get("applications/api/price", {"product_code": "XRP_JPY"} ).done(function (data){
+                  console.log(data)
+                  var bit_coin_info = JSON.parse(data)
+                  console.log(typeof bit_coin_info)
+                  $('#dashboard_dev2').append(bit_coin_info['truncate_second'] +' '+ bit_coin_info['price'] + '<br>')
+              })
+          }
+          {#setInterval(send2, 1000 * 60)#}
+          /*window.onload = function (){
+              send2()
+          }*/
+      </script>
+
+    <h1>Price</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+{#            <div id="dashboard_dev1"></div>#}
+        </div>
+        <div class="col">
+{#            <div id="dashboard_dev2"></div>#}
+        </div>
+      </div>
+    </div>
+
+
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+
+        {% for i in object_list %}
+                    ['{{ i.created_time }}', {{ i.high_price }}, {{ i.high_price }}, {{ i.low_price }}, {{ i.close_price }}],
+                {% endfor %}
+
+{% endblock %}
