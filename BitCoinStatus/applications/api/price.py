@@ -19,7 +19,7 @@ def generate_kind_of_time(base_time):
         'truncate_hour': dt.replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
         'truncate_minute': dt.replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
         'truncate_second': dt.replace(second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
-        'unixtime': dt.timestamp()
+        'unixtime': dt.replace(minute=0, second=0, microsecond=0).timestamp()
     }
 
     return result
@@ -47,27 +47,27 @@ class BitCoinData(object):
 
 
 def main(product_name):
-    print('skip insert')
-    # bitCoin = BitCoinData()
-    # bitCoinData = bitCoin.get_price(product_name)
-    #
-    # time_set = generate_kind_of_time(bitCoinData[0])
-    #
-    # result = {
-    #     'product_code': 'BTC_JPY',
-    #     'open_price': bitCoinData[1],
-    #     'high_price': bitCoinData[2],
-    #     'low_price': bitCoinData[3],
-    #     'close_price': bitCoinData[4],
-    #     'truncate_hour_time': time_set['truncate_hour'],
-    #     'truncate_minute_time': time_set['truncate_minute'],
-    #     'truncate_second_time': time_set['truncate_second'],
-    #     'unixtime': time_set['unixtime']
-    #
-    # }
+    # print('skip insert')
+    bitCoin = BitCoinData()
+    bitCoinData = bitCoin.get_price(product_name)
+
+    time_set = generate_kind_of_time(bitCoinData[0])
+
+    result = {
+        'product_code': 'BTC_JPY',
+        'open_price': bitCoinData[1],
+        'high_price': bitCoinData[2],
+        'low_price': bitCoinData[3],
+        'close_price': bitCoinData[4],
+        'truncate_hour_time': time_set['truncate_hour'],
+        'truncate_minute_time': time_set['truncate_minute'],
+        'truncate_second_time': time_set['truncate_second'],
+        'unixtime': time_set['unixtime']
+
+    }
 
     # print('resultresultresultresult', result)
-    # return result
+    return result
 
 
 if __name__ == '__main__':

@@ -16,8 +16,9 @@ def insert_data(bit_coin_data):
         truncate_hour_time=bit_coin_data['truncate_hour_time'],
         truncate_minute_time=bit_coin_data['truncate_minute_time'],
         truncate_second_time=bit_coin_data['truncate_second_time'],
-        bit_coin_data=bit_coin_data['unixtime']
+        unixtime=bit_coin_data['unixtime']
     )
+    print('Do insert')
     b.save()
 
 
