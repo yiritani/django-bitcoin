@@ -12,7 +12,7 @@ def pprint(product_data):
 
 
 def select_data():
-    selected_data = BitCoinData.objects.all().values().filter(product_code='BTC_JPY').values('product_code', 'price', 'created_time')
+    selected_data = BitCoinData.objects.all().values().filter(product_code='BTC_JPY').values('product_code', 'created_time')
 
     # for i in selected_data:
     #     print(i)

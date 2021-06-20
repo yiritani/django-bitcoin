@@ -30,12 +30,10 @@ def call_get_price_api(request):
     if 'product_code' in request.GET:
         product = request.GET['product_code']
 
-    # response = price.main(product)
-    for i in price.main(product):
+    response = price.main(product)
     # print('AAAAAAA',response)
-        print(i)
-        insert_db.insert_data(i)
-    # select_db.select_data()
+    insert_db.insert_data(response)
+    select_db.select_data()
 
 
-    return HttpResponse('')
+    return HttpResponse(response)

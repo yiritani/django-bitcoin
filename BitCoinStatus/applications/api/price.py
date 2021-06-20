@@ -1,8 +1,6 @@
 import configparser
 import os
 import datetime
-import time
-
 import requests
 import hashlib
 
@@ -36,13 +34,10 @@ class BitCoinData(object):
             'Content-Type': 'application/json'}
 
     def get_price(self, product_code='BTC_JPY'):
-        response = requests.get('https://api.cryptowat.ch/markets/bitflyer/btcjpy/ohlc?periods=86400').json()[
+        response = requests.get('https://api.cryptowat.ch/markets/bitflyer/btcjpy/ohlc?periods=60').json()[
             'result'].items()
-
-        # print('PPPPPPPPPPPPPPPPPPPPPPPPPP', response)
-
         for i in response:
-            return i[1]
+            return i[1][-2]
 
         # return requests.get(
         #     config['default']['BASE_URL'] + '/v1/ticker?product_code=' + product_code,
@@ -54,28 +49,24 @@ def main(product_name):
     bitCoin = BitCoinData()
     bitCoinData = bitCoin.get_price(product_name)
 
-    for i in bitCoinData:
-        time_set = generate_kind_of_time(i[0])
+    time_set = generate_kind_of_time(bitCoinData[0])
 
-        result = {
-            'product_code': 'BTC_JPY',
-            'open_price': i[1],
-            'high_price': i[2],
-            'low_price': i[3],
-            'close_price': i[4],
-            'truncate_hour_time': time_set['truncate_hour'],
-            'truncate_minute_time': time_set['truncate_minute'],
-            'truncate_second_time': time_set['truncate_second'],
+    result = {
+        'product_code': 'BTC_JPY',
+        'open_price': bitCoinData[1],
+        'high_price': bitCoinData[2],
+        'low_price': bitCoinData[3],
+        'close_price': bitCoinData[4],
+        'truncate_hour_time': time_set['truncate_hour'],
+        'truncate_minute_time': time_set['truncate_minute'],
+        'truncate_second_time': time_set['truncate_second'],
 
-        }
+    }
 
-        # print('resultresultresultresult', result)
-        # return result
-        yield result
-
+    print('resultresultresultresult', result)
+    return result
 
 
 if __name__ == '__main__':
     print(main('BTC_JPY'))
     # print(config.sections())
-
