@@ -47,26 +47,27 @@ class BitCoinData(object):
 
 
 def main(product_name):
-    bitCoin = BitCoinData()
-    bitCoinData = bitCoin.get_price(product_name)
-
-    time_set = generate_kind_of_time(bitCoinData[0])
-
-    result = {
-        'product_code': 'BTC_JPY',
-        'open_price': bitCoinData[1],
-        'high_price': bitCoinData[2],
-        'low_price': bitCoinData[3],
-        'close_price': bitCoinData[4],
-        'truncate_hour_time': time_set['truncate_hour'],
-        'truncate_minute_time': time_set['truncate_minute'],
-        'truncate_second_time': time_set['truncate_second'],
-        'unixtime': time_set['unixtime']
-
-    }
+    print('skip insert')
+    # bitCoin = BitCoinData()
+    # bitCoinData = bitCoin.get_price(product_name)
+    #
+    # time_set = generate_kind_of_time(bitCoinData[0])
+    #
+    # result = {
+    #     'product_code': 'BTC_JPY',
+    #     'open_price': bitCoinData[1],
+    #     'high_price': bitCoinData[2],
+    #     'low_price': bitCoinData[3],
+    #     'close_price': bitCoinData[4],
+    #     'truncate_hour_time': time_set['truncate_hour'],
+    #     'truncate_minute_time': time_set['truncate_minute'],
+    #     'truncate_second_time': time_set['truncate_second'],
+    #     'unixtime': time_set['unixtime']
+    #
+    # }
 
     # print('resultresultresultresult', result)
-    return result
+    # return result
 
 
 if __name__ == '__main__':

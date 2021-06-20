@@ -5,7 +5,7 @@
     <title>Chart</title>
     <style>
         #dashboard_div{
-            width: 600px;
+            width: 1300px;
             border: 1px solid #ccc;
         }
         #chart_div{
@@ -91,7 +91,6 @@
         }
 
         function send () {
-            console.log("L94")
             if (config.api.enable === false){
                 return
             }
@@ -100,8 +99,7 @@
                 "limit": config.candlestick.limit,
                 "duration": config.candlestick.duration,
             }
-            $.get("applications/api/price", params).done(function (data) {
-                console.log("L103")
+            $.get("applications/api/price", params).done(function () {
                 var dataTable = new google.visualization.DataTable();
                 dataTable.addColumn('date', 'Date');
                 dataTable.addColumn('number', 'Low');
@@ -111,8 +109,8 @@
                 /*dataTable.addColumn('number', 'Volume');*/
 
                 var googleChartData = [];
-                console.log("data" + data)
-                var candles = data["candles"];
+                {#console.log("data" + data)#}
+                {#var candles = data["candles"];#}
 
                 {% for i in object_list %}
                     console.log({{ i.unixtime }})

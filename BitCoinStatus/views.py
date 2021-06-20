@@ -32,7 +32,7 @@ def call_get_price_api(request):
 
     response = price.main(product)
     # print('AAAAAAA',response)
-    insert_db.insert_data(response)
+    # insert_db.insert_data(response)
     select_db.select_data()
 
 
