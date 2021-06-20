@@ -15,10 +15,10 @@ def insert_data(bit_coin_data):
         close_price=bit_coin_data['close_price'],
         truncate_hour_time=bit_coin_data['truncate_hour_time'],
         truncate_minute_time=bit_coin_data['truncate_minute_time'],
-        truncate_second_time=bit_coin_data['truncate_second_time']
+        truncate_second_time=bit_coin_data['truncate_second_time'],
+        unixtime=bit_coin_data['unixtime']
     )
     b.save()
-
 
 
 if __name__ == '__main__':

@@ -43,6 +43,11 @@ class BitCoinData(models.Model):
         null=True
     )
 
+    unixtime = models.CharField(
+        max_length=20,
+        null=True
+    )
+
     created_time = models.DateTimeField(
         null=False,
         auto_now=True

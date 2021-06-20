@@ -20,7 +20,8 @@ def generate_kind_of_time(base_time):
     result = {
         'truncate_hour': dt.replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
         'truncate_minute': dt.replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
-        'truncate_second': dt.replace(second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
+        'truncate_second': dt.replace(second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S'),
+        'unixtime': dt.timestamp()
     }
 
     return result
@@ -66,6 +67,7 @@ def main(product_name):
             'truncate_hour_time': time_set['truncate_hour'],
             'truncate_minute_time': time_set['truncate_minute'],
             'truncate_second_time': time_set['truncate_second'],
+            'unixtime': time_set['unixtime']
 
         }
 
