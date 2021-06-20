@@ -6,7 +6,7 @@ from ...models import BitCoinData
 
 
 def insert_data(bit_coin_data):
-    print('AAA', bit_coin_data)
+    # print('AAA', bit_coin_data)
     b = BitCoinData(
         product_code=bit_coin_data['product_code'],
         open_price=bit_coin_data['open_price'],

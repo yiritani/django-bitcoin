@@ -113,9 +113,13 @@
                 var googleChartData = [];
                 console.log("data" + data)
                 var candles = data["candles"];
-                let today = new Date()
+
                 {% for i in object_list %}
-                    var datas = [today, {{ i.low_price }}, {{ i.open_price }}, {{ i.close_price }},  {{ i.high_price }}];
+                    console.log({{ i.unixtime }})
+                    un_time = new Date({{ i.unixtime }})
+                    console.log(new Date(un_time*1000))
+                    encoded_un_time = new Date(un_time*1000)
+                    var datas = [encoded_un_time, {{ i.low_price }}, {{ i.open_price }}, {{ i.close_price }},  {{ i.high_price }}];
                     googleChartData.push(datas)
                 {% endfor %}
 
@@ -129,7 +133,7 @@
             send();
         }
 
-        setInterval(send, 1000 * 3)
+        {#setInterval(send, 1000 * 3)#}
         window.onload = function () {
             send()
 
